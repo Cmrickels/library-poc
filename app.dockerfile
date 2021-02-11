@@ -1,0 +1,10 @@
+FROM php:7.4.15-fpm
+
+RUN apt-get update && apt-get install -y apt-transport-https \
+    && apt-get install -y libmcrypt-dev \
+    mariadb-client libmagickwand-dev --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && pecl install mcrypt-1.0.3 \
+    && docker-php-ext-enable mcrypt
+    # && docker-php-ext-install mcrypt pdo_mysql
